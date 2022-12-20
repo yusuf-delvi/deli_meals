@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './categories_page.dart';
+
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
@@ -31,9 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text('DeliMeals'),
       ),
-      body: const Center(
-        child: Text('Navigation Time!'),
-      ),
+      body: const CategoriesPage(),
     );
   }
 }
