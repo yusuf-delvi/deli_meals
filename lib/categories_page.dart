@@ -15,6 +15,7 @@ class CategoriesPage extends StatelessWidget {
         crossAxisSpacing: 20,
         mainAxisSpacing: 20,
       ),
+      padding: const EdgeInsets.all(20),
       children: <Widget>[
         ...(DUMMY_CATEGORIES
             .map((catData) => CategoryItem(catData.title, catData.color))
