@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './category_meals_page.dart';
+import '../pages/category_meals_page.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem(this.id, this.title, this.color, {super.key});
