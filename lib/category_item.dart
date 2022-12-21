@@ -10,12 +10,12 @@ class CategoryItem extends StatelessWidget {
   final Color color;
 
   void selectCategory(ctx) {
-    Navigator.of(ctx).push(
-      MaterialPageRoute(
-        builder: (_) {
-          return CategoryMealsPage(id, title);
-        },
-      ),
+    Navigator.of(ctx).pushNamed(
+      CategoryMealsPage.routeName,
+      arguments: {
+        'id': id,
+        'title': title,
+      },
     );
   }
 
