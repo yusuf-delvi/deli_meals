@@ -6,6 +6,7 @@ import '../pages/meal_detail_page.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({
+    required this.id,
     required this.title,
     required this.imageUrl,
     required this.duration,
@@ -14,6 +15,7 @@ class MealItem extends StatelessWidget {
     super.key,
   });
 
+  final String id;
   final String title;
   final String imageUrl;
   final int duration;
@@ -49,7 +51,7 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void selectMeal(ctx) {
-      Navigator.of(ctx).pushNamed(MealDetailPage.routeName);
+      Navigator.of(ctx).pushNamed(MealDetailPage.routeName, arguments: id);
     }
 
     return InkWell(
