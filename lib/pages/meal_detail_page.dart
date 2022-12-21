@@ -76,6 +76,8 @@ class MealDetailPage extends StatelessWidget {
                 children: [
                   ListTile(
                     leading: CircleAvatar(
+                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      foregroundColor: Colors.white,
                       child: Text('# ${idx + 1}'),
                     ),
                     title: Text(selectedMeal.steps[idx]),
