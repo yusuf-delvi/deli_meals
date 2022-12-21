@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../models/meal.dart';
 
+import '../pages/meal_detail_page.dart';
+
 class MealItem extends StatelessWidget {
   const MealItem({
     required this.title,
@@ -46,10 +48,12 @@ class MealItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void selectMeal() {}
+    void selectMeal(ctx) {
+      Navigator.of(ctx).pushNamed(MealDetailPage.routeName);
+    }
 
     return InkWell(
-      onTap: () => selectMeal,
+      onTap: () => selectMeal(context),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
