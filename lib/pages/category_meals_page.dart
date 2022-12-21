@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../dummy_data.dart';
+import '../models/meal.dart';
+
+import '../widgets/meal_item.dart';
 
 class CategoryMealsPage extends StatelessWidget {
   const CategoryMealsPage({super.key});
@@ -22,7 +25,13 @@ class CategoryMealsPage extends StatelessWidget {
       appBar: AppBar(title: Text(categoryTitle)),
       body: ListView.builder(
         itemBuilder: (ctx, idx) {
-          return Text(categoryMeals[idx].title);
+          Meal category = categoryMeals[idx];
+          return MealItem(
+            title: category.title,
+            imageUrl: category.imageUrl,
+            duration: category.duration,
+            complexity: category.complexity,
+          );
         },
         itemCount: categoryMeals.length,
       ),
