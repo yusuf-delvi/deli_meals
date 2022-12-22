@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../pages/filters_page.dart';
+
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});
 
-  Widget LinkRow(String text, IconData icon) {
+  Widget LinkRow(String text, IconData icon, Function tapHandler) {
     return ListTile(
       leading: Icon(
         icon,
@@ -17,7 +19,9 @@ class MainDrawer extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onTap: () {},
+      onTap: () {
+        tapHandler();
+      },
     );
   }
 
@@ -43,8 +47,20 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            LinkRow('Meals', Icons.restaurant),
-            LinkRow('Filters', Icons.settings),
+            LinkRow(
+              'Meals',
+              Icons.restaurant,
+              () {
+                Navigator.of(context).pushNamed('/');
+              },
+            ),
+            LinkRow(
+              'Filters',
+              Icons.settings,
+              () {
+                Navigator.of(context).pushNamed(FiltersScreen.routeName);
+              },
+            ),
           ],
         ),
       ),
