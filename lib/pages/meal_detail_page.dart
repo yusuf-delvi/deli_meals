@@ -41,6 +41,12 @@ class MealDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text(selectedMeal.title)),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pop(mealId);
+        },
+        child: const Icon(Icons.delete),
+      ),
       body: SingleChildScrollView(
         child: Column(children: [
           SizedBox(

@@ -5,13 +5,14 @@ import '../models/meal.dart';
 import '../pages/meal_detail_page.dart';
 
 class MealItem extends StatelessWidget {
-  const MealItem({
+  MealItem({
     required this.id,
     required this.title,
     required this.imageUrl,
     required this.duration,
     required this.complexity,
     required this.affordability,
+    required this.removeItem,
     super.key,
   });
 
@@ -21,6 +22,7 @@ class MealItem extends StatelessWidget {
   final int duration;
   final Complexity complexity;
   final Affordability affordability;
+  Function removeItem;
 
   String get complexityText {
     switch (complexity) {
@@ -51,7 +53,11 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void selectMeal(ctx) {
-      Navigator.of(ctx).pushNamed(MealDetailPage.routeName, arguments: id);
+      Navigator.of(ctx)
+          .pushNamed(MealDetailPage.routeName, arguments: id)
+          .then((mealId) {
+        removeItem(mealId);
+      });
     }
 
     return InkWell(

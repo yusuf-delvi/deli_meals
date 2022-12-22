@@ -5,27 +5,51 @@ import '../models/meal.dart';
 
 import '../widgets/meal_item.dart';
 
-class CategoryMealsPage extends StatelessWidget {
+class CategoryMealsPage extends StatefulWidget {
   const CategoryMealsPage({super.key});
 
   static const routeName = '/category-meals';
 
   @override
+  State<CategoryMealsPage> createState() => _CategoryMealsPageState();
+}
+
+class _CategoryMealsPageState extends State<CategoryMealsPage> {
+  late String categoryTitle;
+  late List<Meal> displayedMeals;
+  bool _loadedInitData = false;
+
+  @override
+  void didChangeDependencies() {
+    if (!_loadedInitData) {
+      final routeArgs =
+          ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+      final String categoryId = routeArgs['id']!;
+      categoryTitle = routeArgs['title']!;
+
+      displayedMeals = DUMMY_MEALS
+          .where((meal) => meal.categories.contains(categoryId))
+          .toList();
+
+      _loadedInitData = true;
+    }
+
+    super.didChangeDependencies();
+  }
+
+  void _removeMeal(String mealId) {
+    setState(() {
+      displayedMeals.removeWhere((meal) => meal.id == mealId);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final routeArgs =
-        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
-    final String categoryTitle = routeArgs['title']!;
-    final String categoryId = routeArgs['id']!;
-
-    final categoryMeals = DUMMY_MEALS
-        .where((meal) => meal.categories.contains(categoryId))
-        .toList();
-
     return Scaffold(
       appBar: AppBar(title: Text(categoryTitle)),
       body: ListView.builder(
         itemBuilder: (ctx, idx) {
-          Meal category = categoryMeals[idx];
+          Meal category = displayedMeals[idx];
           return MealItem(
             id: category.id,
             title: category.title,
@@ -33,9 +57,10 @@ class CategoryMealsPage extends StatelessWidget {
             duration: category.duration,
             complexity: category.complexity,
             affordability: category.affordability,
+            removeItem: _removeMeal,
           );
         },
-        itemCount: categoryMeals.length,
+        itemCount: displayedMeals.length,
       ),
     );
   }
