@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import './categories_page.dart';
 import './favorites_page.dart';
+import '../widgets/main_drawer.dart';
 
 class TabsPage extends StatefulWidget {
   const TabsPage({super.key});
@@ -30,6 +31,7 @@ class _TabsPageState extends State<TabsPage> {
       appBar: AppBar(
         title: Text(_pages[_selectedPageIdx]['title']),
       ),
+      drawer: const MainDrawer(),
       body: _pages[_selectedPageIdx]['page'],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
