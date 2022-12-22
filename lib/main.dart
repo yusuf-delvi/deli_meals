@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         '/': (ctx) => const TabsPage(),
         CategoryMealsPage.routeName: (ctx) => const CategoryMealsPage(),
         MealDetailPage.routeName: (ctx) => const MealDetailPage(),
-        FiltersScreen.routeName: (ctx) => const FiltersScreen(),
+        FiltersPage.routeName: (ctx) => const FiltersPage(),
       },
     );
   }

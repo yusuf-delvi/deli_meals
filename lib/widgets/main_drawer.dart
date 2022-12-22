@@ -59,7 +59,7 @@ class MainDrawer extends StatelessWidget {
               Icons.settings,
               () {
                 Navigator.of(context)
-                    .pushReplacementNamed(FiltersScreen.routeName);
+                    .pushReplacementNamed(FiltersPage.routeName);
               },
             ),
           ],

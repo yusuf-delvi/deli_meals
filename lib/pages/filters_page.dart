@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../widgets/main_drawer.dart';
 
-class FiltersScreen extends StatelessWidget {
-  const FiltersScreen({super.key});
+class FiltersPage extends StatelessWidget {
+  const FiltersPage({super.key});
 
   static String routeName = '/filters';
 
