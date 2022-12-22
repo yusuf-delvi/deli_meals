@@ -4,6 +4,7 @@ import 'pages/categories_page.dart';
 import 'pages/category_meals_page.dart';
 import 'pages/meal_detail_page.dart';
 import './pages/tabs_page.dart';
+import './pages/filters_page.dart';
 
 void main() => runApp(const MyApp());
 
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/': (ctx) => const TabsPage(),
         CategoryMealsPage.routeName: (ctx) => const CategoryMealsPage(),
         MealDetailPage.routeName: (ctx) => const MealDetailPage(),
+        FiltersScreen.routeName: (ctx) => const FiltersScreen(),
       },
     );
   }
