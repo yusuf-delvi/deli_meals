@@ -1,15 +1,58 @@
 import 'package:flutter/material.dart';
 
-import 'pages/categories_page.dart';
-import 'pages/category_meals_page.dart';
-import 'pages/meal_detail_page.dart';
+import './dummy_data.dart';
+import './models/meal.dart';
+
+import './pages/categories_page.dart';
+import './pages/category_meals_page.dart';
+import './pages/meal_detail_page.dart';
 import './pages/tabs_page.dart';
 import './pages/filters_page.dart';
 
 void main() => runApp(const MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Map<String, bool> _filters = {
+    'gluten': false,
+    'lactose': false,
+    'vegan': false,
+    'vegetarian': false,
+  };
+
+  List<Meal> _availableMeals = DUMMY_MEALS;
+
+  void _setFilters(Map<String, bool> filterData) {
+    setState(() {
+      _filters = filterData;
+
+      _availableMeals = DUMMY_MEALS.where((meal) {
+        if (_filters['gluten']! && !meal.isGlutenFree) {
+          return false;
+        }
+        if (_filters['lactose']! && !meal.isLactoseFree) {
+          return false;
+        }
+
+        if (_filters['vegan']! && !meal.isVegan) {
+          return false;
+        }
+
+        if (_filters['vegetarian']! && !meal.isVegetarian) {
+          return false;
+        }
+
+        return true;
+        //....
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +81,10 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (ctx) => const TabsPage(),
-        CategoryMealsPage.routeName: (ctx) => const CategoryMealsPage(),
+        CategoryMealsPage.routeName: (ctx) =>
+            CategoryMealsPage(_availableMeals),
         MealDetailPage.routeName: (ctx) => const MealDetailPage(),
-        FiltersPage.routeName: (ctx) => const FiltersPage(),
+        FiltersPage.routeName: (ctx) => FiltersPage(_setFilters),
       },
     );
   }
