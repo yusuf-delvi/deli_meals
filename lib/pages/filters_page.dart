@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import '../widgets/main_drawer.dart';
 
 class FiltersPage extends StatefulWidget {
-  const FiltersPage(this.saveFilters, {super.key});
+  const FiltersPage(this.currentFilters, this.saveFilters, {super.key});
 
   final saveFilters;
+  final Map<String, bool> currentFilters;
 
   static String routeName = '/filters';
 
@@ -18,6 +19,16 @@ class _FiltersPageState extends State<FiltersPage> {
   bool _vegetarian = false;
   bool _vegan = false;
   bool _lactoseFree = false;
+
+  @override
+  void initState() {
+    _glutenFree = widget.currentFilters['gluten'] as bool;
+    _lactoseFree = widget.currentFilters['lactose'] as bool;
+    _vegetarian = widget.currentFilters['vegetarian'] as bool;
+    _vegan = widget.currentFilters['vegan'] as bool;
+
+    super.initState();
+  }
 
   Widget _buildSwitchTile(
     String title,

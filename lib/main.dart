@@ -84,7 +84,7 @@ class _MyAppState extends State<MyApp> {
         CategoryMealsPage.routeName: (ctx) =>
             CategoryMealsPage(_availableMeals),
         MealDetailPage.routeName: (ctx) => const MealDetailPage(),
-        FiltersPage.routeName: (ctx) => FiltersPage(_setFilters),
+        FiltersPage.routeName: (ctx) => FiltersPage(_filters, _setFilters),
       },
     );
   }
