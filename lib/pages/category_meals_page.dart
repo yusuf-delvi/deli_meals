@@ -5,11 +5,12 @@ import '../models/meal.dart';
 import '../widgets/meal_item.dart';
 
 class CategoryMealsPage extends StatefulWidget {
-  const CategoryMealsPage(this.availableMeals, {super.key});
+  CategoryMealsPage(this.availableMeals, this.toggleFav, {super.key});
 
   static const routeName = '/category-meals';
 
   final List<Meal> availableMeals;
+  Function toggleFav;
 
   @override
   State<CategoryMealsPage> createState() => _CategoryMealsPageState();
@@ -59,6 +60,7 @@ class _CategoryMealsPageState extends State<CategoryMealsPage> {
             complexity: category.complexity,
             affordability: category.affordability,
             removeItem: _removeMeal,
+            toggleFav: widget.toggleFav,
           );
         },
         itemCount: displayedMeals.length,

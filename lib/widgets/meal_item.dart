@@ -13,6 +13,7 @@ class MealItem extends StatelessWidget {
     required this.complexity,
     required this.affordability,
     required this.removeItem,
+    required this.toggleFav,
     super.key,
   });
 
@@ -23,6 +24,7 @@ class MealItem extends StatelessWidget {
   final Complexity complexity;
   final Affordability affordability;
   Function removeItem;
+  Function toggleFav;
 
   String get complexityText {
     switch (complexity) {
@@ -140,6 +142,19 @@ class MealItem extends StatelessWidget {
                       const SizedBox(width: 6),
                       Text(affordabilityText),
                     ],
+                  ),
+                  InkWell(
+                    onTap: () {
+                      toggleFav(id);
+                    },
+                    child: Row(
+                      children: const [
+                        Icon(
+                          Icons.favorite,
+                        ),
+                        SizedBox(width: 6),
+                      ],
+                    ),
                   )
                 ],
               ),

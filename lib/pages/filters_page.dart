@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../models/meal.dart';
+
 import '../widgets/main_drawer.dart';
 
 class FiltersPage extends StatefulWidget {
-  const FiltersPage(this.currentFilters, this.saveFilters, {super.key});
+  const FiltersPage(this.currentFilters, this.saveFilters, this.favoriteMeals,
+      {super.key});
 
   final saveFilters;
   final Map<String, bool> currentFilters;
+  final List<Meal> favoriteMeals;
 
   static String routeName = '/filters';
 
